@@ -25,4 +25,21 @@ function addBookToLibrary(Book){
 addBookToLibrary(Book1);
 addBookToLibrary(Book2);
 
-console.log(myLibrary);
+
+const saveBookBtn = document.querySelector("#saveBook");
+
+saveBookBtn.addEventListener("click", saveBookClick, false);
+
+function saveBookClick(event){
+
+    //Get book information from form
+    const title = document.querySelector("#title").value;
+    const author = document.querySelector("#author").value;
+    const pages = document.querySelector("#pages").value;
+    const read = document.querySelector("#read");
+    
+    addBookToLibrary(new Book(title, author, pages, read))
+    event.preventDefault();
+    console.log("Book saved!")
+    console.log(myLibrary);
+}
