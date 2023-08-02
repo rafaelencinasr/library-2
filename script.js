@@ -1,4 +1,3 @@
-
 //Book object constructor
 function Book(title, bookCoverUrl, author, pages, read){
     this.title = title
@@ -13,8 +12,13 @@ Book.prototype.sayTitle = function(){
     return "This book is called: " + this.title;
 }
 
+//Toggle Read status
+Book.prototype.toggleRead = function(){
+    this.read = !this.read;
+}
+
 //Test books
-const Book1 = new Book("Test title","","Test Author LastName", 56, true);
+//const Book1 = new Book("Test title","","Test Author LastName", 56, true);
 const Book2 = new Book("LOTR 1","https://upload.wikimedia.org/wikipedia/en/8/8e/The_Fellowship_of_the_Ring_cover.gif", "J. R. R. Tolkien", 654, true);
 const Book3 = new Book("LOTR 2","https://upload.wikimedia.org/wikipedia/en/a/a1/The_Two_Towers_cover.gif", "J. R. R. Tolkien", 555, false);
 const Book4 = new Book("LOTR 3","https://upload.wikimedia.org/wikipedia/en/1/11/The_Return_of_the_King_cover.gif","J. R. R. Tolkien", 444, true);
@@ -29,7 +33,7 @@ function addBookToLibrary(Book){
 }
 
 //Add test books to library
-addBookToLibrary(Book1);
+//addBookToLibrary(Book1);
 addBookToLibrary(Book2);
 addBookToLibrary(Book3);
 addBookToLibrary(Book4);
@@ -92,16 +96,15 @@ function renderLibrary(){
             <p class="author">By: ${element.author}</p>
             <p class="pages">${element.pages} pages</p>
             <p class="readStatus">${element.read ? "Read":"Not read yet"}</p>
+            <button class="toggleRead" data-index="${index}">Change read status</button>
         </div>`
     )
     //Adds the delete functionality to the X button (at the top of each book)
     //This function needs to be called each time the library is rendered because
     //new "books" would be missing from the originally created node list
     addDeleteFunction();
+    addReadToggle();
 }
-
-//Initial rendering of the previously saved books
-renderLibrary();
 
 function addDeleteFunction(){
     //Creates a node list with all the elements which have the "deleteBook" class
@@ -125,3 +128,44 @@ function addDeleteFunction(){
         }) 
     })
 }
+
+const hideFormBtn = document.querySelector("#hideForm");
+const showFormBtn = document.querySelector("#showForm");
+const bookForm = document.querySelector("#bookForm");
+
+//Hide form
+hideFormBtn.addEventListener("click", ()=>{
+    bookForm.classList.remove("show");
+    bookForm.classList.add("hide");
+});
+
+//Show form
+showFormBtn.addEventListener("click", ()=>{
+    bookForm.classList.remove("hide");
+    bookForm.classList.add("show");
+});
+
+//Toggle Read status
+function addReadToggle(){
+    let toggleReadBtn = document.querySelectorAll(".toggleRead");
+
+    toggleReadBtn.forEach(toggleBtn =>{
+        //Add an event listener to each "Toggle Read Button"
+        toggleBtn.addEventListener("click",()=>{
+            //Get the book index from the dataset attribute
+            let elementIndex = toggleBtn.dataset.index;
+            
+            //Call the toggleRead() method from the prototype
+            myLibrary[elementIndex].toggleRead();
+
+            //Clear library element to prevent duplication
+            library.innerHTML = '';
+
+            //Re-render the library element
+            renderLibrary();
+        })
+    });
+};
+
+//Initial rendering of the previously saved books
+renderLibrary();
