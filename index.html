@@ -10,20 +10,26 @@
     
     <h1>Library 2</h1>
 
-    <form action="">
+    <form action="" id="bookForm">
+        
         <div class="inputContainer">
             <label for="title">Book title:</label>
-            <input type="text" name="author" id="title" placeholder="I.e: The Great Gatsby">
+            <input type="text" name="author" id="title" placeholder="I.e: The Great Gatsby" required>
+        </div>
+
+        <div class="inputContainer">
+            <label for="bookCover">Book cover picture url (optional):</label>
+            <input type="url" name="bookCover" id="bookCover" placeholder="https://upload.wikimedia.org/SNice.svg/">
         </div>
         
         <div class="inputContainer">
             <label for="author">Author:</label>
-            <input type="text" name="author" id="author" placeholder="I.e: F. Scott Fitzgerald">
+            <input type="text" name="author" id="author" placeholder="I.e: F. Scott Fitzgerald" required>
         </div>
 
         <div class="inputContainer">
             <label for="pages">Number of pages:</label>
-            <input type="number" name="pages" id="pages" placeholder="I.e: 208">
+            <input type="number" name="pages" id="pages" placeholder="I.e: 208" required>
         </div>
 
         <div class="inputContainer">
@@ -31,8 +37,28 @@
             <input type="checkbox" name="read" id="read">
         </div>
 
-        <button type="submit" id="saveBook">Save book to Library</button>
+        <div class="buttonsContainer">
+            <button type="submit" id="saveBook">Save book to Library</button>
+            <button type="reset">Reset</button>
+        </div>
     </form>
+
+    <div id="library">
+
+<!-- 
+        <div class="book">
+            <p class="deleteBook">X</p>
+            <h3 class="title">LOTR</h3>
+            <div class="coverArt">
+                <img src="https://m.media-amazon.com/images/I/51kfFS5-fnL._SY344_BO1,204,203,200_QL70_ML2_.jpg" alt="" srcset="">
+            </div>
+            <p class="author">J.R.R. Tolkien</p>
+            <p class="pages">255 pages</p>
+            <p class="readStatus">Read</p>
+        </div>
+ -->
+
+    </div>
 
     <script src="./script.js" defer></script>
 </body>
