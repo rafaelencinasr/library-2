@@ -1,4 +1,4 @@
-//Book object constructor
+/* //Book object constructor
 function Book(title, bookCoverUrl, author, pages, read){
     this.title = title
     this.bookCoverUrl = bookCoverUrl
@@ -6,7 +6,26 @@ function Book(title, bookCoverUrl, author, pages, read){
     this.pages = pages
     this.read = read
 }
+ */
+class Book{
+    constructor(title, bookCoverUrl, author, pages, read){
+        this.title = title;
+        this.bookCoverUrl = bookCoverUrl;
+        this.author = author;
+        this.pages = pages;
+        this.read = read;
+    }
 
+    sayTitle(){
+        return "This book is called: " + this.title;
+    }
+
+    toggleRead(){
+        this.read = !this.read;
+    }
+}
+
+/* 
 //Test method
 Book.prototype.sayTitle = function(){
     return "This book is called: " + this.title;
@@ -16,6 +35,8 @@ Book.prototype.sayTitle = function(){
 Book.prototype.toggleRead = function(){
     this.read = !this.read;
 }
+ */
+
 
 //Test books
 //const Book1 = new Book("Test title","","Test Author LastName", 56, true);
